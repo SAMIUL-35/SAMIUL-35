@@ -8,7 +8,7 @@
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=samiul-35&label=Profile%20views&color=0e75b6&style=flat" alt="samiul-35" /> </p>
 
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=samiul-35" alt="samiul-35" /></a> </p>
+
 
 - 🌱 I’m currently learning **Django**
 - 💬 Ask me about **React, Express, MongoDB, Django, MySQL**
