@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Check out the repository
-      - uses: actions/checkout@v2
+      # Check out the repository (updated to version 3)
+      - uses: actions/checkout@v3
 
       # Generate the snake GIF and SVG
       - uses: Platane/snk@master
