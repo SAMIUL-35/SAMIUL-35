@@ -1,18 +1,19 @@
 name: Generate Snake
 
-# Controls when the action will run. This action runs every 6 hours.
 on:
   schedule:
     - cron: "0 */6 * * *"  # Every 6 hours
-  workflow_dispatch:  # Allows manual triggering from the Actions tab
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Check out the repository (updated to version 3)
+      # Check out the repository and persist credentials
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # Keeps the GitHub token active for pushing
 
       # Generate the snake GIF and SVG
       - uses: Platane/snk@master
@@ -25,13 +26,14 @@ jobs:
       # Show build status for easier debugging
       - run: git status
 
-      # Push the generated snake graphics to the 'output' branch
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: output  # Use the designated branch for output files
-          force: true
+      # Commit and push the generated snake graphics to the 'output' branch
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add dist/github-contribution-grid-snake.gif dist/github-contribution-grid-snake.svg
+          git commit -m "Update snake contribution graph"
+          git push origin output
 
       # Deploy the snake graphics to GitHub Pages
       - uses: peaceiris/actions-gh-pages@v3
